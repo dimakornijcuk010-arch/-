@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мій щоденний трекер настрою</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Мій щоденний трекер настрою</h1>
+
+        <p class="lead text-center">
+            Запишіть свій настрій або найважливішу думку за сьогодні.
+        </p>
+
+        <label for="mood" class="form-label">Ваш настрій сьогодні</label>
+        <textarea id="mood" class="form-control mb-3" rows="4"
+                  placeholder="Як ви себе почуваєте сьогодні?"></textarea>
+
+        <div class="text-center mb-4">
+            <button type="button" class="btn btn-primary" id="saveMood">
+                Зберегти настрій
+            </button>
+        </div>
+
+        <div id="message" class="alert alert-success d-none" role="status"></div>
+
+        <h2 class="h4 mb-3">Настрої дня</h2>
+
+        <div class="p-3 mb-3 bg-success text-white rounded">
+            😊 <strong>Бадьорий</strong> — маю багато енергії та готовий до нових справ.
+        </div>
+        <div class="p-3 mb-3 bg-info text-dark rounded">
+            😌 <strong>Спокійний</strong> — почуваюся врівноважено та комфортно.
+        </div>
+        <div class="p-3 mb-3 bg-warning text-dark rounded">
+            😴 <strong>Втомлений</strong> — мені потрібен відпочинок.
+        </div>
+        <div class="p-3 mb-3 bg-primary text-white rounded">
+            🎯 <strong>Зосереджений</strong> — можу уважно працювати над завданнями.
+        </div>
+        <div class="p-3 mb-3 bg-danger text-white rounded">
+            😄 <strong>Радісний</strong> — сьогодні мене тішать приємні моменти.
+        </div>
+    </div>
+
+    <script>
+        const moodField = document.getElementById('mood');
+        const saveButton = document.getElementById('saveMood');
+        const message = document.getElementById('message');
+
+        saveButton.addEventListener('click', function () {
+            const mood = moodField.value.trim();
+
+            if (!mood) {
+                message.className = 'alert alert-warning';
+                message.textContent = 'Спочатку введіть свій настрій або думку.';
+                return;
+            }
+
+            const savedAt = new Date().toLocaleString('uk-UA');
+            message.className = 'alert alert-success';
+            message.textContent = `Ваш запис збережено на цій сторінці (${savedAt}): ${mood}`;
+        });
+    </script>
+</body>
+</html>
